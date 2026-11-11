@@ -1,0 +1,17 @@
+{
+  "name": "flixelgdx",
+  "owner": {
+    "name": "FlixelGDX",
+    "url": "https://github.com/flixelgdx"
+  },
+  "metadata": {
+    "description": "Shared Claude Code skills, agents, and hooks for every FlixelGDX repository."
+  },
+  "plugins": [
+    {
+      "name": "flixelgdx",
+      "source": "./plugins/flixelgdx",
+      "description": "Skills shared by every FlixelGDX repository, such as release notes."
+    }
+  ]
+}

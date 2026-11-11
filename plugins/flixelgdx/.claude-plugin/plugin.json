@@ -1,0 +1,9 @@
+{
+  "name": "flixelgdx",
+  "description": "Skills shared by every FlixelGDX repository, such as release notes.",
+  "author": {
+    "name": "FlixelGDX",
+    "url": "https://github.com/flixelgdx"
+  },
+  "repository": "https://github.com/flixelgdx/claude-configs"
+}
