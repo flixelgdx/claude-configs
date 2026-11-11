@@ -1,7 +1,8 @@
 # claude-configs
 
-The single source of truth for the Claude Code skills, agents, and hooks used across the FlixelGDX repositories.
-Instead of copying a skill into every repository, it lives here once and each repository loads it as a plugin.
+The single source of truth for the Claude Code skills, agents, hooks, and MCP servers used across the FlixelGDX
+repositories. Instead of copying them into every repository, they live here once and each repository loads them
+through the `flixelgdx-dev` plugin.
 
 ## How a repository uses it
 
@@ -18,30 +19,51 @@ Each repository commits a `.claude/settings.json` that points at this marketplac
     }
   },
   "enabledPlugins": {
-    "flixelgdx@flixelgdx": true
+    "flixelgdx-dev@flixelgdx": true
   }
 }
 ```
 
-When someone opens the repository in Claude Code and trusts the folder, Claude Code asks them to install the
-plugin. After that, updates pushed here reach every repository.
-
-To install it by hand instead, run this inside Claude Code:
+When someone trusts the repository folder for the first time, Claude Code asks them to install the plugin. If the
+folder was already trusted, the prompt does not appear, so install it once by hand inside Claude Code:
 
 ```
-/plugin install flixelgdx --marketplace flixelgdx/claude-configs
+/plugin install flixelgdx-dev --marketplace flixelgdx/claude-configs
 ```
+
+After that, updates pushed here reach every repository.
+
+## What the plugin contains
+
+| Kind | Name | What it does |
+|---|---|---|
+| Skill | `/flixelgdx-dev:release-notes` | Summarizes the pull requests in a tag into release notes. |
+| Skill | `/flixelgdx-dev:perf-review` | Reviews Java changes against the framework's performance rules (runs on Opus). |
+| Skill | `/flixelgdx-dev:javadoc-fact-check` | Checks that doc comments match what the code does (runs on Opus). |
+| Skill | `/flixelgdx-dev:deprecated-api-hunt` | Finds deprecated APIs and confirms each one against official docs (runs on Opus). |
+| Skill | `/flixelgdx-dev:bump-framework` | Moves an extension onto a newer framework version and fixes what broke. |
+| Agent | `flixelgdx-core` | Implements changes that touch core APIs, looking up the current source first (Sonnet). |
+| Agent | `docs-sync` | Finds documentation left stale by a public API change (Sonnet). |
+| Hook | `no-coauthor` | Blocks any `git commit` that carries a `Co-Authored-By` trailer. |
+| MCP | `flixelgdx-debugger` | Connects to the remote debugger at `127.0.0.1:6511` while it is running. |
+
+The debugger MCP server shows as failed in sessions where the debugger is not running. That is expected and
+harmless.
 
 ## Layout
 
 ```
-.claude-plugin/marketplace.json        the marketplace, listing every plugin
-plugins/flixelgdx/.claude-plugin/      the shared plugin's manifest
-plugins/flixelgdx/skills/<name>/       one folder per skill
+.claude-plugin/marketplace.json            the marketplace, listing every plugin
+plugins/flixelgdx-dev/.claude-plugin/      the plugin's manifest
+plugins/flixelgdx-dev/skills/<name>/       one folder per skill
+plugins/flixelgdx-dev/agents/              one file per agent
+plugins/flixelgdx-dev/hooks/               hooks.json and the scripts it runs
+plugins/flixelgdx-dev/.mcp.json            MCP servers
 ```
 
-## Adding a skill
+## Adding something
 
-1. Create `plugins/flixelgdx/skills/<skill-name>/SKILL.md`.
-2. Keep it project-neutral, since every repository loads it.
-3. Push to `master`. Skills are invoked as `/flixelgdx:<skill-name>`.
+- Only add things most repositories need. A skill or agent that only one repository uses belongs in that
+  repository's own `.claude/` folder.
+- Keep it project-neutral where you can, since every repository loads it.
+- Run `claude plugin validate .` before pushing.

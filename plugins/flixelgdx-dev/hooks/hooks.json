@@ -1,0 +1,17 @@
+{
+  "description": "Guards that enforce FlixelGDX's Git rules.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/no-coauthor.sh\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
