@@ -9,9 +9,9 @@
   },
   "plugins": [
     {
-      "name": "flixelgdx",
-      "source": "./plugins/flixelgdx",
-      "description": "Skills shared by every FlixelGDX repository, such as release notes."
+      "name": "flixelgdx-dev",
+      "source": "./plugins/flixelgdx-dev",
+      "description": "Development tooling shared by every FlixelGDX repository: review and fact-check skills, a core-aware agent, guard hooks, and the remote debugger MCP server."
     }
   ]
 }

@@ -1,0 +1,9 @@
+{
+  "name": "flixelgdx-dev",
+  "description": "Development tooling shared by every FlixelGDX repository: review and fact-check skills, a core-aware agent, guard hooks, and the remote debugger MCP server.",
+  "author": {
+    "name": "FlixelGDX",
+    "url": "https://github.com/flixelgdx"
+  },
+  "repository": "https://github.com/flixelgdx/claude-configs"
+}
