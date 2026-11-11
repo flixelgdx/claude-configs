@@ -20,9 +20,20 @@ Each repository commits a `.claude/settings.json` that points at this marketplac
   },
   "enabledPlugins": {
     "flixelgdx-dev@flixelgdx": true
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "env": {
+    "CLAUDE_CODE_USE_POWERSHELL_TOOL": "0"
   }
 }
 ```
+
+`attribution` stops Claude Code from adding its own co-author trailer, and `CLAUDE_CODE_USE_POWERSHELL_TOOL` turns off
+the PowerShell tool on Windows so Claude uses Git Bash. Windows contributors need
+[Git for Windows](https://gitforwindows.org/) installed.
 
 When someone trusts the repository folder for the first time, Claude Code asks them to install the plugin. If the
 folder was already trusted, the prompt does not appear, so install it once by hand inside Claude Code:
@@ -45,6 +56,7 @@ After that, updates pushed here reach every repository.
 | Agent | `flixelgdx-core` | Implements changes that touch core APIs, looking up the current source first (Sonnet). |
 | Agent | `docs-sync` | Finds documentation left stale by a public API change (Sonnet). |
 | Hook | `no-coauthor` | Blocks any `git commit` that carries a `Co-Authored-By` trailer. |
+| Hook | `no-powershell` | Blocks Claude Code's PowerShell tool and any Bash command that launches PowerShell, so commands run through Git Bash. |
 | MCP | `flixelgdx-debugger` | Connects to the remote debugger at `127.0.0.1:6511` while it is running. |
 
 The debugger MCP server shows as failed in sessions where the debugger is not running. That is expected and
