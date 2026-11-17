@@ -55,6 +55,7 @@ After that, updates pushed here reach every repository.
 | Skill | `/flixelgdx-dev:bump-framework` | Moves an extension onto a newer framework version and fixes what broke. |
 | Agent | `flixelgdx-core` | Implements changes that touch core APIs, looking up the current source first (Sonnet). |
 | Agent | `docs-sync` | Finds documentation left stale by a public API change (Sonnet). |
+| Agent | `scaffold-project` | Scaffolds a new repository, or fills in what an existing one lacks: build skeleton, `AGENTS.md`, Claude Code settings, docs that link back to the framework, and configs (Opus). |
 | Hook | `no-coauthor` | Blocks any `git commit` that carries a `Co-Authored-By` trailer. |
 | Hook | `no-powershell` | Blocks Claude Code's PowerShell tool and any Bash command that launches PowerShell, so commands run through Git Bash. |
 | MCP | `flixelgdx-debugger` | Connects to the remote debugger at `127.0.0.1:6511` while it is running. |
