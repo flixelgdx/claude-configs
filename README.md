@@ -44,35 +44,8 @@ folder was already trusted, the prompt does not appear, so install it once by ha
 
 After that, updates pushed here reach every repository.
 
-## What the plugin contains
-
-| Kind | Name | What it does |
-|---|---|---|
-| Skill | `/flixelgdx-dev:release-notes` | Summarizes the pull requests in a tag into release notes. |
-| Skill | `/flixelgdx-dev:perf-review` | Reviews Java changes against the framework's performance rules (runs on Opus). |
-| Skill | `/flixelgdx-dev:javadoc-fact-check` | Checks that doc comments match what the code does (runs on Opus). |
-| Skill | `/flixelgdx-dev:deprecated-api-hunt` | Finds deprecated APIs and confirms each one against official docs (runs on Opus). |
-| Skill | `/flixelgdx-dev:bump-framework` | Moves an extension onto a newer framework version and fixes what broke. |
-| Agent | `flixelgdx-core` | Implements changes that touch core APIs, looking up the current source first (Sonnet). |
-| Agent | `docs-sync` | Finds documentation left stale by a public API change (Sonnet). |
-| Agent | `scaffold-project` | Scaffolds a new repository, or fills in what an existing one lacks: build skeleton, `AGENTS.md`, Claude Code settings, docs that link back to the framework, and configs (Opus). |
-| Hook | `no-coauthor` | Blocks any `git commit` that carries a `Co-Authored-By` trailer. |
-| Hook | `no-powershell` | Blocks Claude Code's PowerShell tool and any Bash command that launches PowerShell, so commands run through Git Bash. |
-| MCP | `flixelgdx-debugger` | Connects to the remote debugger at `127.0.0.1:6511` while it is running. |
-
 The debugger MCP server shows as failed in sessions where the debugger is not running. That is expected and
 harmless.
-
-## Layout
-
-```
-.claude-plugin/marketplace.json            the marketplace, listing every plugin
-plugins/flixelgdx-dev/.claude-plugin/      the plugin's manifest
-plugins/flixelgdx-dev/skills/<name>/       one folder per skill
-plugins/flixelgdx-dev/agents/              one file per agent
-plugins/flixelgdx-dev/hooks/               hooks.json and the scripts it runs
-plugins/flixelgdx-dev/.mcp.json            MCP servers
-```
 
 ## Adding something
 
